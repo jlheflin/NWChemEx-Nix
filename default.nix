@@ -1,10 +1,8 @@
-let
-  nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/tarball/nixos-25.05";
-  pkgs = import nixpkgs { config = {}; overlays = []; };
-  pythonEnv = pkgs.python312.withPackages (ps: with ps; [ ase qcelemental pip qcengine networkx ]);
-  parallelzone = pkgs.callPackage ./parallelzone.nix {inherit pythonEnv; };
+{ pkgs, lib, fetchFromGitHub, cmake, spdlog, gcc, mpi, boost, cereal, stdenv }:
 
+let
+  pythonEnv = pkgs.python312.withPackages (ps: with ps; [ ase qcelemental pip qcengine networkx ]);
 in
-{
-  parallelzone = parallelzone;
+pkgs.callPackage ./parallelzone.nix {
+  inherit pythonEnv stdenv lib fetchFromGitHub cmake spdlog gcc mpi boost cereal;
 }

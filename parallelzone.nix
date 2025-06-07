@@ -69,8 +69,7 @@ stdenv.mkDerivation rec {
     "-DFETCHCONTENT_SOURCE_DIR_CMAIZE=${cmaize}"
     "-DFETCHCONTENT_SOURCE_DIR_CMAKEPP_LANG=${cmakepplang}"
     "-DFETCHCONTENT_SOURCE_DIR_PYBIND11=${pybind}"
-    "-DNWX_MODULE_DIRECTORY=${placeholder "out"}"
-    "-DCMAKE_INSTALL_PREFIX=${placeholder "out"}"
+    "-DNWX_MODULE_DIRECTORY=./lib/python3.12/site-packages"
   ];
 
   meta = {
